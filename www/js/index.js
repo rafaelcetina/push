@@ -27,15 +27,15 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;'); 
 
         console.log('Received Event: ' + id); 
-        var pushNotification = window.plugins.pushNotification; 
+        var PushNotification = window.plugins.PushNotification; 
         if (device.platform == 'android' || device.platform == 'Android') { 
             alert("Register called"); 
             //tu Project ID aca!! 
-            pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"pushnotifications-145718","ecb":"app.onNotificationGCM"}); 
+            PushNotification.register(this.successHandler, this.errorHandler,{"senderID":"Pushnotifications-145718","ecb":"app.onNotificationGCM"}); 
         } 
         else { 
             alert("Register called"); 
-            pushNotification.register(this.successHandler,this.errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"}); 
+            PushNotification.register(this.successHandler,this.errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"}); 
         } 
     }, 
     // result contains any message sent from the plugin call 
@@ -73,14 +73,14 @@ var app = {
         } 
     }, 
     onNotificationAPN: function(event) { 
-        var pushNotification = window.plugins.pushNotification; 
+        var PushNotification = window.plugins.PushNotification; 
         alert("Running in JS - onNotificationAPN - Received a notification! " + event.alert); 
          
         if (event.alert) { 
             navigator.notification.alert(event.alert); 
         } 
         if (event.badge) { 
-            pushNotification.setApplicationIconBadgeNumber(this.successHandler, this.errorHandler, event.badge); 
+            PushNotification.setApplicationIconBadgeNumber(this.successHandler, this.errorHandler, event.badge); 
         } 
         if (event.sound) { 
             var snd = new Media(event.sound); 
